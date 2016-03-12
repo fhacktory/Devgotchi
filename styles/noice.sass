@@ -1,2 +1,35 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro)
+
+=status_bar
+  padding: 3px
+  margin: 10px 0
+  height: 15px
+  background-color: #fbe822
+  width: 300px
+
 body
+  background-color: #7bb1a4
+
+.console
+  font-family: 'Source Code Pro'
+  width: 50%
+  position: absolute
+  top: 0
+  bottom: 0
   background-color: black
+  color: green
+  overflow: scroll
+
+.ui
+  padding: 10px 10px
+  width: 40%
+  position: absolute
+  right: 0
+  top: 0
+  bottom: 0
+
+.status_bars
+  float: right
+
+.score, .life, .money
+  +status_bar
