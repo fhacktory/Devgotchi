@@ -2,14 +2,15 @@
 %html
   %head
     %meta{charset: "utf-8"}
-    %title DEVGOTCHI
+    %title devgotchi
     %link{rel: "stylesheet", type: "text/css", href: "_css/noice.css"}
+    %link{rel: "stylesheet", type: "text/css", href: "_css/modal.css"}
     %script{type: "text/javascript", src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"}
     %script{type: "text/javascript", src: "_js/app.js"}
   %body
     .ui
+      .score
       %ul.status_bars
-        .score
         %li.money
           %div
         %li.life
@@ -18,3 +19,7 @@
           %div
       %img{src: "assets/developer.png"}
     %pre.console
+  .modal
+    .modal-content
+      %span.modal-close="X"
+      %p="Hello modal"
