@@ -43,3 +43,5 @@ $ ->
   window.onclick = (event) ->
     if event.target == modal
       modal.style.display = "none"
+  dev = new Dev($(".developer"))
+  dev.change_status("victory")
