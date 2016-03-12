@@ -1,10 +1,6 @@
 $ ->
-<<<<<<< a966397a7d8e2d10637fdfe8368f8a9c2e4ea3a6
   increment     = 20
-=======
   dev           = new Dev($(".developer"))
-  increment     = 5
->>>>>>> Add more animation
   codeish       = ''
   index         = 0
   score         = -1
@@ -53,7 +49,6 @@ $ ->
     modal.hide()
     score *= 0
     load_level()
-    dev = new Dev($(".developer"))
 
   load_level = () ->
     load_file(level[score])
@@ -64,4 +59,3 @@ $ ->
   else
     score *= 0
     load_level()
-    dev = new Dev($(".developer"))
