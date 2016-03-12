@@ -15,25 +15,19 @@ $loading_color: #fbe822
     background: $loading_color
 
 body
+  padding: 10px
   background-color: #7bb1a4
 
 .console
   font-family: 'Source Code Pro'
-  width: 40%
-  position: absolute
-  top: 0
-  bottom: 0
+  width: 100%
   background-color: black
   color: green
   overflow: scroll
+  min-height: 700px
 
 .ui
   padding: 10px 10px
-  width: 58%
-  position: absolute
-  right: 0
-  top: 0
-  bottom: 0
 
 .status_bars
   float: right
@@ -43,10 +37,8 @@ body
 
 .developer
   padding: 10px 0
-  position: absolute
-  top: 0
-  bottom: 0
-  height: 100%
+  width: 100%
+
 .money, .life, .money
   +status_bar
 

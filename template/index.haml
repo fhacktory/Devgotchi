@@ -4,33 +4,39 @@
     %meta{charset: "utf-8"}
     %title devgotchi
 
+    %link{rel: "stylesheet", type: "text/css", href: "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css"}
     %link{rel: "stylesheet", type: "text/css", href: "css/noice.css"}
-    %link{rel: "stylesheet", type: "text/css", href: "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css"}
 
     %script{type: "text/javascript", src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"}
-    %script{type: "text/javascript", src: "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"}
+    %script{type: "text/javascript", src: "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.js"}
     %script{type: "text/javascript", src: "js/app.js"}
   %body
-    .ui
-      .score
-      %ul.status_bars
-        %li.money
-          %div
-        %li.life
-          %div
-        %li.money
-          %div
-      %img.developer{src: "assets/developer/default.png"}
-    %pre.console
+    .ui.two.column.grid
+      .column
+        %pre.console
+      .column
+        .ui.grid
+          .ten.wide.column
+            .score
+            %img.developer{src: "assets/developer/default.png"}
+          .six.wide.column
+            %ul.status_bars
+              %li.money
+                %div
+              %li.life
+                %div
+              %li.money
+                %div
 
-  .modal.new-game
-    .modal-content
-      %label="Choose your character name :"
-      %br
-      %input.character-name{type: "text", placeholder: "Voyant"}
-      %br
-      %input.new-game-start{type: "button", value: "Start !"}
+  .ui.modal.new-game
+    .header Choose your character name :
+    .content
+      .ui.input
+        %input.character-name{type: "text", placeholder: "Voyant"}
+    .actions
+      .ui.positive.button.new-game-start Start !
 
-  .modal.level-up
-    .modal-content
-      %p="Congratulations your reached to next level !"
+  .ui.modal.level-up
+    %i.close.icon
+    .header
+      %p Congratulations your reached to next level !

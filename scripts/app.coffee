@@ -6,7 +6,7 @@ $ ->
   index         = 0
   score         = -1
   terminal      = $('.console')
-  modal         = $('.modal').dialog(autoOpen: false, closeOnEscape: false)
+  modal         = $('.modal').modal()
   level_up_modal= $('.level-up')
   start_button  = $('.new-game-start')
   name_input    = $('.character-name')
@@ -40,12 +40,12 @@ $ ->
       load_file(level[score])
       index = 0
       terminal.html("")
-      level_up_modal.dialog("open")
+      level_up_modal.modal("show")
       game_running = false
 
   start_button.on 'click', ->
     localStorage.character_name = name_input.val()
-    modal.dialog("close")
+    modal.modal("hide")
     score *= 0
     load_level()
 
@@ -55,7 +55,7 @@ $ ->
 
   character_name = localStorage.character_name
   if character_name == undefined
-    modal.dialog("open")
+    modal.modal("show")
   else
     score *= 0
     load_level()
