@@ -17,9 +17,13 @@
           %div
         %li.money
           %div
-      %img{src: "assets/developer/default.png", class: "developer"}
+      %img.developer{src: "assets/developer/default.png"}
     %pre.console
-  .modal
+
+  .modal.new-game
     .modal-content
-      %span.modal-close="X"
-      %p="Hello modal"
+      %label="Choose your character name :"
+      %br
+      %input.character-name{type: "text", placeholder: "Voyant"}
+      %br
+      %input.new-game-start{type: "button", value: "Start !"}

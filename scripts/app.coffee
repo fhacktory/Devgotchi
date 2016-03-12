@@ -6,6 +6,8 @@ $ ->
   terminal      = $('.console')
   modal         = $('.modal')[0]
   close_modal   = $('.modal-close')
+  start_button  = $('.new-game-start')
+  name_input    = $('.character-name')
   level         =
     0: 'code.c'
     1: 'code.cpp'
@@ -24,9 +26,6 @@ $ ->
       success: (data) ->
         codeish = data
 
-  inc_score()
-  load_file(level[score])
-
   $(document).keyup (event) ->
     terminal.append(codeish.slice(index, index + increment))
     terminal.scrollTop(terminal[0].scrollHeight)
@@ -40,8 +39,20 @@ $ ->
   close_modal.on 'click', ->
     modal.style.display = "none"
 
-  window.onclick = (event) ->
-    if event.target == modal
-      modal.style.display = "none"
-  dev = new Dev($(".developer"))
-  dev.change_status("victory")
+  start_button.on 'click', ->
+    localStorage.character_name = name_input.val()
+    modal.style.display = "none"
+    score *= 0
+    load_level()
+    dev = new Dev($(".developer"))
+
+  load_level = () ->
+    load_file(level[score])
+
+  character_name = localStorage.character_name
+  if character_name == undefined
+    modal.style.display = "block"
+  else
+    score *= 0
+    load_level()
+    dev = new Dev($(".developer"))
