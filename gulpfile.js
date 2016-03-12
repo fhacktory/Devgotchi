@@ -56,17 +56,10 @@ gulp.task('haml', function() {
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
+    gulp.src('.').pipe(server({ livereload: true, open: true }));
     gulp.watch(paths.js, ['js']);
     gulp.watch(paths.css, ['css']);
     gulp.watch(paths.haml, ['haml']);
-});
-
-gulp.task('serve', function() {
-    gulp.src('.')
-        .pipe(server({
-            livereload: true,
-            open: true
-        }));
 });
 
 // The default task (called when you run `gulp` from cli)
