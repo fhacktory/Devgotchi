@@ -8,9 +8,13 @@
     %script{type: "text/javascript", src: "_js/app.js"}
   %body
     .ui
-      .status_bars
+      %ul.status_bars
         .score
-        .life
-        .money
+        %li.money
+          %div
+        %li.life
+          %div
+        %li.money
+          %div
       %img{src: "assets/developer.png"}
     %pre.console
