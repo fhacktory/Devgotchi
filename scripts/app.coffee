@@ -1,12 +1,12 @@
 $ ->
+  game_running  = false
   increment     = 20
   dev           = new Dev($(".developer"))
   codeish       = ''
   index         = 0
   score         = -1
   terminal      = $('.console')
-  modal         = $('.modal')
-  close_modal   = $('.modal-close')
+  modal         = $('.modal').dialog(autoOpen: false, closeOnEscape: false)
   level_up_modal= $('.level-up')
   start_button  = $('.new-game-start')
   name_input    = $('.character-name')
@@ -29,6 +29,7 @@ $ ->
         codeish = data
 
   $(document).keyup (event) ->
+    return unless game_running
     dev.change_status("computing")
     terminal.append(codeish.slice(index, index + increment))
     terminal.scrollTop(terminal[0].scrollHeight)
@@ -39,23 +40,22 @@ $ ->
       load_file(level[score])
       index = 0
       terminal.html("")
-      level_up_modal.show()
-
-  close_modal.on 'click', ->
-    modal.hide()
+      level_up_modal.dialog("open")
+      game_running = false
 
   start_button.on 'click', ->
     localStorage.character_name = name_input.val()
-    modal.hide()
+    modal.dialog("close")
     score *= 0
     load_level()
 
   load_level = () ->
+    game_running = true
     load_file(level[score])
 
   character_name = localStorage.character_name
   if character_name == undefined
-    modal.show()
+    modal.dialog("open")
   else
     score *= 0
     load_level()

@@ -33,7 +33,7 @@ gulp.task('js', ['clean_js'], function() {
         .pipe(uglify())
         .pipe(concat('app.js'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('_js'));
+        .pipe(gulp.dest('js'));
 });
 
 gulp.task('css', ['clean_css'], function() {
@@ -42,7 +42,7 @@ gulp.task('css', ['clean_css'], function() {
         .pipe(sass())
         .pipe(cssmin())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('_css'));
+        .pipe(gulp.dest('css'));
 });
 
 gulp.task('haml', function() {
