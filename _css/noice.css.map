@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,IAAI;EACF,gBAAgB,EAAE,KAAK",
+"sources": ["../sass/noice.sass"],
+"names": [],
+"file": "noice.css"
+}
