@@ -1,5 +1,10 @@
 $ ->
+<<<<<<< a966397a7d8e2d10637fdfe8368f8a9c2e4ea3a6
   increment     = 20
+=======
+  dev           = new Dev($(".developer"))
+  increment     = 5
+>>>>>>> Add more animation
   codeish       = ''
   index         = 0
   score         = -1
@@ -28,10 +33,12 @@ $ ->
         codeish = data
 
   $(document).keyup (event) ->
+    dev.change_status("computing")
     terminal.append(codeish.slice(index, index + increment))
     terminal.scrollTop(terminal[0].scrollHeight)
     index += increment
     if index > codeish.length
+      dev.change_status("victory")
       inc_score()
       load_file(level[score])
       index = 0
