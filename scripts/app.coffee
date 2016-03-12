@@ -1,11 +1,12 @@
 $ ->
-  increment     = 5
+  increment     = 20
   codeish       = ''
   index         = 0
   score         = -1
   terminal      = $('.console')
-  modal         = $('.modal')[0]
+  modal         = $('.modal')
   close_modal   = $('.modal-close')
+  level_up_modal= $('.level-up')
   start_button  = $('.new-game-start')
   name_input    = $('.character-name')
   level         =
@@ -35,13 +36,14 @@ $ ->
       load_file(level[score])
       index = 0
       terminal.html("")
+      level_up_modal.show()
 
   close_modal.on 'click', ->
-    modal.style.display = "none"
+    modal.hide()
 
   start_button.on 'click', ->
     localStorage.character_name = name_input.val()
-    modal.style.display = "none"
+    modal.hide()
     score *= 0
     load_level()
     dev = new Dev($(".developer"))
@@ -51,7 +53,7 @@ $ ->
 
   character_name = localStorage.character_name
   if character_name == undefined
-    modal.style.display = "block"
+    modal.show()
   else
     score *= 0
     load_level()
