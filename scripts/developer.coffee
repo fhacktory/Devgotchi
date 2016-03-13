@@ -64,7 +64,7 @@ class @Dev
 
   buy: (skill) ->
     console.log "Money: #{@money}, skill price: #{skill.price}"
-    if @money > skill.price
+    if @money > skill.price and skill.number < skill.max
       @set_money(@money - skill.price)
       skill.increase_number()
       @skills[skill.name] = skill.number

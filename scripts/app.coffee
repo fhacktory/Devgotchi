@@ -5,7 +5,7 @@ $ ->
   codeish       = ''
   terminal      = $('.console')
   skills        =
-    terminal: new Skill('terminal', 50, dev.skills.terminal, ->
+    terminal: new Skill('terminal', 50, dev.skills.terminal, 10, ->
       $('.workspace').append('<pre class="console"></pre>')
       terminal = $('.console'))
   new_game      = $('.new-game').modal(closable: false)
