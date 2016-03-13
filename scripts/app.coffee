@@ -49,6 +49,10 @@ $ ->
     load_file(levels[dev.level])
 
   dev.load()
+  setInterval ->
+    dev.save()
+  , 5000
+
 
   if !dev.name
     new_game.modal("show")
