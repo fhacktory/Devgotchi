@@ -43,14 +43,14 @@ $ ->
     dev.change_status("computing")
     dev.on_type()
 
-    terminal.append(codeish.slice(dev.cur_xp, dev.cur_xp + dev.increment))
+    terminal.text(codeish.slice(0, dev.cur_xp + dev.increment))
     terminal.scrollTop(terminal[0].scrollHeight)
 
     if dev.cur_xp > dev.xp_total
       dev.change_status("victory")
       dev.level_up()
       load_file(levels[dev.level])
-      terminal.html("")
+      terminal.text("")
       level_up_modal.modal
         onHide: ->
           game_running = true
