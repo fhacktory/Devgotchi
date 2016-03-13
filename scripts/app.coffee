@@ -1,10 +1,12 @@
 $ ->
   game_running  = false
   dev           = new Dev($(".developer"))
-  skills        =
-    terminal: new Skill('terminal', 50, 1)
   codeish       = ''
   terminal      = $('.console')
+  skills        =
+    terminal: new Skill('terminal', 50, 1, ->
+      $('.workspace').append('<pre class="console"></pre>')
+      terminal = $('.console'))
   new_game      = $('.new-game').modal(closable: false)
   level_up_modal= $('.level-up').modal()
   name_input    = $('.character-name')
