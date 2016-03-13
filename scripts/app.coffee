@@ -4,23 +4,18 @@ $ ->
   dev           = new Dev($(".developer"))
   codeish       = ''
   index         = 0
-  score         = -1
   terminal      = $('.console')
-  modal         = $('.modal').modal()
-  level_up_modal= $('.level-up')
+  new_game      = $('.new-game').modal()
+  level_up_modal= $('.level-up').modal()
   start_button  = $('.new-game-start')
   name_input    = $('.character-name')
-  level         =
+  levels         =
     0: 'code.c'
     1: 'code.cpp'
     2: 'code.py'
     3: 'code.rb'
     4: 'code.lua'
     5: 'code.go'
-
-  inc_score = ->
-    score += 1
-    $(".score").html(score)
 
   load_file = (filename) ->
     $.ajax
@@ -34,28 +29,28 @@ $ ->
     terminal.append(codeish.slice(index, index + increment))
     terminal.scrollTop(terminal[0].scrollHeight)
     index += increment
+
     if index > codeish.length
       dev.change_status("victory")
-      inc_score()
-      load_file(level[score])
+      dev.level_up()
+      load_file(levels[dev.level])
       index = 0
       terminal.html("")
       level_up_modal.modal("show")
       game_running = false
 
   start_button.on 'click', ->
-    localStorage.character_name = name_input.val()
-    modal.modal("hide")
-    score *= 0
+    dev.name = name_input.val()
+    new_game.modal("hide")
     load_level()
 
   load_level = () ->
     game_running = true
-    load_file(level[score])
+    load_file(levels[dev.level])
 
-  character_name = localStorage.character_name
-  if character_name == undefined
-    modal.modal("show")
+  dev.load()
+
+  if !dev.name
+    new_game.modal("show")
   else
-    score *= 0
     load_level()
