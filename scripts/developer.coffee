@@ -19,6 +19,7 @@ class @Dev
     @increment  = 1
     @skills =
       terminal: 1
+      robot: 0
     @set_money(@money)
     @set_level(@level)
 
@@ -57,6 +58,8 @@ class @Dev
     console.log "Money after set : #{@money}"
     if @money > 50
       $(".terminal-skill").show()
+    if @money > 2000
+      $(".robot-skill").show()
 
   set_level: (level) ->
     @level = level
@@ -81,6 +84,11 @@ class @Dev
       @skills = JSON.parse(localStorage.skills)
       if @skills.terminal > 1
         $('.workspace').append('<pre class="console"></pre>') for i in [2..@skills.terminal]
+      if @skills.robot > 0
+        setInterval ->
+          $('.workspace').keyup()
+        , 100 for i in [1..@skills.robot]
+
 
   save: ->
     localStorage.name = @name

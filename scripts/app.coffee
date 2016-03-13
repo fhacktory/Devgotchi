@@ -5,9 +5,13 @@ $ ->
   codeish       = ''
   terminal      = $('.console')
   skills        =
-    terminal: new Skill('terminal', 50, dev.skills.terminal, 10, ->
+    terminal: new Skill('terminal', 50, dev.skills.terminal or 0, 10, ->
       $('.workspace').append('<pre class="console"></pre>')
       terminal = $('.console'))
+    robot: new Skill('robot', 2000, dev.skills.robot or 0, 10, ->
+      setInterval ->
+        $('.workspace').keyup()
+      , 100)
   new_game      = $('.new-game').modal(closable: false)
   level_up_modal= $('.level-up').modal()
   name_input    = $('.character-name')
@@ -19,8 +23,10 @@ $ ->
     4: 'code.lua'
     5: 'code.go'
 
-  if dev.money < 50
-    $('.skill').hide()
+  if dev.money < skills.terminal.price and skills.terminal.number == 0
+    $('.terminal-skill').hide()
+  if dev.money < skills.robot.price and skills.robot.number == 0
+    $('.robot-skill').hide()
 
   load_file = (filename) ->
     $.ajax
@@ -64,6 +70,9 @@ $ ->
 
   $('.terminal-btn').on 'click', ->
     dev.buy(skills.terminal)
+
+  $('.robot-btn').on 'click', ->
+    dev.buy(skills.robot)
 
   load_level = ->
     game_running = true
