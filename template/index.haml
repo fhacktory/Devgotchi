@@ -20,14 +20,25 @@
             .score
             %img.developer{src: "assets/developer/default.png"}
           .six.wide.column
-            .ui.olive.progress.xp
-              .bar
-            .ui.olive.progress.money
-              .bar
-            .ui.olive.progress.hungry
-              .bar
-            .ui.olive.progress.tired
-              .bar
+            .grid
+              .sixteen.wide.column
+                .ui.olive.progress.xp
+                  .bar
+                .ui.olive.progress.money
+                  .bar
+                .ui.olive.progress.hungry
+                  .bar
+                .ui.olive.progress.tired
+                  .bar
+
+              .skills.sixteen.wide.column
+                .skill.terminal-skill
+                  %p="Buy one more terminal !"
+                  %p
+                    Cost:
+                    %span.terminal-price
+                    , Number:
+                    %span.terminal-number
 
   .ui.modal.new-game
     .header Choose your character name :

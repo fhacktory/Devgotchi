@@ -1,11 +1,12 @@
 $ ->
   game_running  = false
   dev           = new Dev($(".developer"))
+  skills        =
+    terminal: new Skill('terminal', 50, 1)
   codeish       = ''
   terminal      = $('.console')
   new_game      = $('.new-game').modal()
   level_up_modal= $('.level-up').modal()
-  start_button  = $('.new-game-start')
   name_input    = $('.character-name')
   levels         =
     0: 'code.c'
@@ -35,7 +36,7 @@ $ ->
   $(document).keyup (event) ->
     return unless game_running
     dev.change_status("computing")
-    dev.one_type()
+    dev.on_type()
 
     terminal.append(codeish.slice(dev.cur_xp, dev.cur_xp + dev.increment))
     terminal.scrollTop(terminal[0].scrollHeight)
@@ -50,6 +51,14 @@ $ ->
           game_running = true
       level_up_modal.modal 'show'
       game_running = false
+
+  $('.new-game-start').on 'click', ->
+    dev.name = name_input.val()
+    new_game.modal("hide")
+    load_level()
+
+  $('.terminal-skill').on 'click', ->
+    dev.buy(skills.terminal)
 
   load_level = ->
     game_running = true

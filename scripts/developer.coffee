@@ -17,6 +17,8 @@ class @Dev
     @cur_xp     = 0
     @xp_total   = 0
     @increment  = 20
+    @skills =
+      terminal: 1
 
   one_type: ->
     @cur_xp += @increment
@@ -47,6 +49,11 @@ class @Dev
     $(".score").html(@level)
 
 
+  buy: (skill) ->
+    if @money > skill.price
+      @money -= skill.price
+      skill.increase_number()
+
   load: ->
     return if localStorage.name == undefined
     @name = localStorage.name
@@ -55,6 +62,8 @@ class @Dev
     @tired = localStorage.tired
     @level = +localStorage.level
     @status = localStorage.status
+    if localStorage.skills
+      @skills = JSON.parse(localStorage.skills)
 
   save: ->
     localStorage.name = @name
@@ -63,3 +72,4 @@ class @Dev
     localStorage.tired = @tired
     localStorage.level = @level
     localStorage.status = @status
+    localStorage.skills = JSON.stringify(@skills)
