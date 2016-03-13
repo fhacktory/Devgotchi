@@ -20,7 +20,7 @@ class @Dev
     @skills =
       terminal: 1
 
-  one_type: ->
+  on_type: ->
     @cur_xp += @increment
     $('.xp').progress 'increment', @increment
 
