@@ -30,7 +30,6 @@ gulp.task('js', ['clean_js'], function() {
     return gulp.src(paths.js)
         .pipe(sourcemaps.init())
         .pipe(coffee())
-        .pipe(uglify())
         .pipe(concat('app.js'))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('js'));
