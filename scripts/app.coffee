@@ -1,10 +1,11 @@
 $ ->
   game_running  = false
   dev           = new Dev($(".developer"))
+  dev.load()
   codeish       = ''
   terminal      = $('.console')
   skills        =
-    terminal: new Skill('terminal', 50, 1, ->
+    terminal: new Skill('terminal', 50, dev.skills.terminal, ->
       $('.workspace').append('<pre class="console"></pre>')
       terminal = $('.console'))
   new_game      = $('.new-game').modal(closable: false)
@@ -18,7 +19,8 @@ $ ->
     4: 'code.lua'
     5: 'code.go'
 
-  $('.skill').hide()
+  if dev.money < 50
+    $('.skill').hide()
 
   load_file = (filename) ->
     $.ajax
@@ -28,7 +30,6 @@ $ ->
         dev.set_xp_total(codeish.length)
 
   start_new_game = ->
-    dev.load()
     unless dev.name
       new_game.modal("show")
       start_button.on 'click', ->

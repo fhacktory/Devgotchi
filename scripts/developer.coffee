@@ -16,7 +16,7 @@ class @Dev
     @level      = 0
     @cur_xp     = 0
     @xp_total   = 0
-    @increment  = 20
+    @increment  = 1
     @skills =
       terminal: 1
     @set_money(@money)
@@ -24,7 +24,7 @@ class @Dev
 
   on_type: ->
     @cur_xp += @increment
-    @set_money(parseInt(@money) + @increment)
+    @set_money(parseInt(@money) + @increment * @skills.terminal)
     $('.xp').progress 'increment', @increment
 
   change_status: (status) ->
@@ -54,6 +54,7 @@ class @Dev
     @money = money
     $(".money").html(@money)
 
+    console.log "Money after set : #{@money}"
     if @money > 50
       $(".terminal-skill").show()
 
@@ -71,13 +72,15 @@ class @Dev
   load: ->
     return if localStorage.name == undefined
     @name = localStorage.name
-    @set_money(localStorage.money)
+    @set_money(parseInt(localStorage.money))
     @hungry = localStorage.hungry
     @tired = localStorage.tired
     @set_level(localStorage.level)
     @status = localStorage.status
     if localStorage.skills
       @skills = JSON.parse(localStorage.skills)
+      if @skills.terminal > 1
+        $('.workspace').append('<pre class="console"></pre>') for i in [2..@skills.terminal]
 
   save: ->
     localStorage.name = @name
