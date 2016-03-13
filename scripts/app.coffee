@@ -1,9 +1,7 @@
 $ ->
   game_running  = false
-  increment     = 20
   dev           = new Dev($(".developer"))
   codeish       = ''
-  index         = 0
   terminal      = $('.console')
   new_game      = $('.new-game').modal()
   level_up_modal= $('.level-up').modal()
@@ -22,39 +20,43 @@ $ ->
       url: "code_samples/#{filename}"
       success: (data) ->
         codeish = data
+        dev.set_xp_total(codeish.length)
+
+  start_new_game = ->
+    dev.load()
+    unless dev.name
+      new_game.modal("show")
+      start_button.on 'click', ->
+        dev.name = name_input.val()
+        new_game.modal("hide")
+        load_level()
+    load_level()
 
   $(document).keyup (event) ->
     return unless game_running
     dev.change_status("computing")
-    terminal.append(codeish.slice(index, index + increment))
-    terminal.scrollTop(terminal[0].scrollHeight)
-    index += increment
+    dev.one_type()
 
-    if index > codeish.length
+    terminal.append(codeish.slice(dev.cur_xp, dev.cur_xp + dev.increment))
+    terminal.scrollTop(terminal[0].scrollHeight)
+
+    if dev.cur_xp > dev.xp_total
       dev.change_status("victory")
       dev.level_up()
       load_file(levels[dev.level])
-      index = 0
       terminal.html("")
-      level_up_modal.modal("show")
+      level_up_modal.modal
+        onHide: ->
+          game_running = true
+      level_up_modal.modal 'show'
       game_running = false
 
-  start_button.on 'click', ->
-    dev.name = name_input.val()
-    new_game.modal("hide")
-    load_level()
-
-  load_level = () ->
+  load_level = ->
     game_running = true
     load_file(levels[dev.level])
 
-  dev.load()
+  start_new_game()
+
   setInterval ->
     dev.save()
   , 5000
-
-
-  if !dev.name
-    new_game.modal("show")
-  else
-    load_level()

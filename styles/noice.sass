@@ -2,18 +2,6 @@
 
 $loading_color: #fbe822
 
-=status_bar
-  margin: 10px 0
-  height: 15px
-  background: darken($loading_color, 30%)
-  width: 300px
-
-=progress_percentage($progress)
-  div
-    height: 100%
-    width: $progress
-    background: $loading_color
-
 body
   padding: 10px
   background-color: #7bb1a4
@@ -38,15 +26,3 @@ body
 .developer
   padding: 10px 0
   width: 100%
-
-.money, .life, .money
-  +status_bar
-
-.money
-  +progress_percentage(10%)
-
-.life
-  +progress_percentage(50%)
-
-.money
-  +progress_percentage(88%)
