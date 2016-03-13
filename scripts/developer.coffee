@@ -24,6 +24,7 @@ class @Dev
 
   on_type: ->
     @cur_xp += @increment
+    @set_money(parseInt(@money) + @increment)
     $('.xp').progress 'increment', @increment
 
   change_status: (status) ->
@@ -48,11 +49,13 @@ class @Dev
   level_up: ->
     @set_level(@level + 1)
     @cur_xp = 0
-    $(".score").html(@level)
 
   set_money: (money) ->
     @money = money
     $(".money").html(@money)
+
+    if @money > 50
+      $(".terminal-skill").show()
 
   set_level: (level) ->
     @level = level
@@ -63,6 +66,7 @@ class @Dev
     if @money > skill.price
       @set_money(@money - skill.price)
       skill.increase_number()
+      @skills[skill.name] = skill.number
 
   load: ->
     return if localStorage.name == undefined

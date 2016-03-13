@@ -16,6 +16,8 @@ $ ->
     4: 'code.lua'
     5: 'code.go'
 
+  $('.skill').hide()
+
   load_file = (filename) ->
     $.ajax
       url: "code_samples/#{filename}"
