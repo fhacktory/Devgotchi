@@ -31,14 +31,21 @@
                 .ui.olive.progress.tired
                   .bar
 
-              .skills.sixteen.wide.column
-                .skill.terminal-skill
-                  %p="Buy one more terminal !"
-                  %p
-                    Cost:
-                    %span.terminal-price
-                    , Number:
-                    %span.terminal-number
+
+              .ui.cards.skills.sixteen.wide.column
+                .card.skill.terminal-skill
+                  .content
+                    .header="Terminal"
+                    .meta
+                      You have&nbsp;
+                      %span.terminal-number
+                      &nbsp;terminals.
+                    .description="Buy more terminals to type faster"
+                  .extra.content
+                    .ui.one.buttons
+                      .ui.button.terminal-btn
+                        Buy for&nbsp;
+                        %span.terminal-price
 
   .ui.modal.new-game
     .header Choose your character name :

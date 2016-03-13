@@ -50,6 +50,7 @@ class @Dev
 
 
   buy: (skill) ->
+    console.log "Money: #{@money}, skill price: #{skill.price}"
     if @money > skill.price
       @money -= skill.price
       skill.increase_number()

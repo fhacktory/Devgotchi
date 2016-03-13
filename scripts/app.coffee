@@ -57,7 +57,7 @@ $ ->
     new_game.modal("hide")
     load_level()
 
-  $('.terminal-skill').on 'click', ->
+  $('.terminal-btn').on 'click', ->
     dev.buy(skills.terminal)
 
   load_level = ->
