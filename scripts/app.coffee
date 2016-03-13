@@ -5,7 +5,7 @@ $ ->
     terminal: new Skill('terminal', 50, 1)
   codeish       = ''
   terminal      = $('.console')
-  new_game      = $('.new-game').modal()
+  new_game      = $('.new-game').modal(closable: false)
   level_up_modal= $('.level-up').modal()
   name_input    = $('.character-name')
   levels         =

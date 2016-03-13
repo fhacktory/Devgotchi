@@ -17,14 +17,17 @@
       .column
         .ui.grid
           .ten.wide.column
-            .score
-            %img.developer{src: "assets/developer/default.png"}
+            .ui.two.item.menu
+              .item
+                .level
+              .item
+                .money
+            .row
+              %img.developer{src: "assets/developer/default.png"}
           .six.wide.column
             .grid
               .sixteen.wide.column
                 .ui.olive.progress.xp
-                  .bar
-                .ui.olive.progress.money
                   .bar
                 .ui.olive.progress.hungry
                   .bar
@@ -59,3 +62,5 @@
     %i.close.icon
     .header
       %p Congratulations your reached the next level !
+    .content
+      ESC to continue

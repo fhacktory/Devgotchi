@@ -19,6 +19,8 @@ class @Dev
     @increment  = 20
     @skills =
       terminal: 1
+    @set_money(@money)
+    @set_level(@level)
 
   on_type: ->
     @cur_xp += @increment
@@ -44,24 +46,31 @@ class @Dev
         success: "LEVEL UP!"
 
   level_up: ->
-    @level += 1
+    @set_level(@level + 1)
     @cur_xp = 0
     $(".score").html(@level)
 
+  set_money: (money) ->
+    @money = money
+    $(".money").html(@money)
+
+  set_level: (level) ->
+    @level = level
+    $(".level").html(@level)
 
   buy: (skill) ->
     console.log "Money: #{@money}, skill price: #{skill.price}"
     if @money > skill.price
-      @money -= skill.price
+      @set_money(@money - skill.price)
       skill.increase_number()
 
   load: ->
     return if localStorage.name == undefined
     @name = localStorage.name
-    @money = localStorage.money
+    @set_money(localStorage.money)
     @hungry = localStorage.hungry
     @tired = localStorage.tired
-    @level = +localStorage.level
+    @set_level(localStorage.level)
     @status = localStorage.status
     if localStorage.skills
       @skills = JSON.parse(localStorage.skills)
