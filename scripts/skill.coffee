@@ -9,3 +9,7 @@ class @Skill
     @number += 1
     @callback()
     $(".#{@name}-number").html(@number)
+
+  decrease_number: =>
+    @number -= 1
+    $(".#{@name}-number").html(@number)

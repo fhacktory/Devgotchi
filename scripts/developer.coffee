@@ -20,13 +20,17 @@ class @Dev
     @skills =
       terminal: 1
       robot: 0
+      pizza: 0
     @set_money(@money)
     @set_level(@level)
 
   on_type: ->
     @cur_xp += @increment
-    @set_money(parseInt(@money) + @increment * @skills.terminal)
+    @set_money(parseInt(@money) + (@increment * @skills.terminal * (1 + (10 * @skills.pizza))))
     $('.xp').progress 'increment', @increment
+
+  decrease_pizza: ->
+    @skills.pizza -= 1
 
   change_status: (status) ->
     @status = status
@@ -62,7 +66,7 @@ class @Dev
       $(".robot-skill").show()
 
   set_level: (level) ->
-    @level = level
+    @level = parseInt(level)
     $(".level").html(@level)
 
   buy: (skill) ->
@@ -71,6 +75,9 @@ class @Dev
       @set_money(@money - skill.price)
       skill.increase_number()
       @skills[skill.name] = skill.number
+
+  dec_pizza: ->
+    @skills.pizza -= 1
 
   load: ->
     return if localStorage.name == undefined

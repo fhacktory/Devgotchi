@@ -12,6 +12,7 @@ $ ->
       setInterval ->
         $('.workspace').keyup()
       , 100)
+    pizza: new Skill('pizza', 20000, dev.skills.pizza or 0, 10, ->)
   new_game      = $('.new-game').modal(closable: false)
   level_up_modal= $('.level-up').modal()
   name_input    = $('.character-name')
@@ -38,7 +39,7 @@ $ ->
   start_new_game = ->
     unless dev.name
       new_game.modal("show")
-      start_button.on 'click', ->
+      $('.new-game-start').on 'click', ->
         dev.name = name_input.val()
         new_game.modal("hide")
         load_level()
@@ -74,6 +75,9 @@ $ ->
   $('.robot-btn').on 'click', ->
     dev.buy(skills.robot)
 
+  $('.pizza-btn').on 'click', ->
+    dev.buy(skills.pizza)
+
   load_level = ->
     game_running = true
     load_file(levels[dev.level])
@@ -82,4 +86,4 @@ $ ->
 
   setInterval ->
     dev.save()
-  , 5000
+  , 20000
